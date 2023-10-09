@@ -4,14 +4,14 @@ namespace WorkoutGeneratorApp.Data
 {
     public class WorkoutDatabase
     {
-        private List<Workout> workoutDatabase;
+        private readonly List<Workout> workoutDatabase;
+
+        public WorkoutDatabase() => workoutDatabase = WorkoutList();
 
         public List<Workout> GetWorkouts()
         {
             return workoutDatabase;
         }
-
-        public WorkoutDatabase() => workoutDatabase = WorkoutList();
 
         public List<Workout> WorkoutList()
         {
@@ -47,7 +47,7 @@ namespace WorkoutGeneratorApp.Data
                     Type = "Fitness"
                 },
                 new Workout{
-                    Id = 4,
+                    Id = 6,
                     Description = "EMOM x 21\r\n- 1 round of „Cindy“\r\n- 1 round of „DT“**\r\n- 200m. Run\r\n*1 Cindy = 5 Pull ups + 10 Push ups + 15 Air squats\r\n**1 DT = 12 Deadlifts + 9 Hang power cleans + 6 Push jerk/press",
                     Intensity = "Medium",
                     Type = "Fitness"

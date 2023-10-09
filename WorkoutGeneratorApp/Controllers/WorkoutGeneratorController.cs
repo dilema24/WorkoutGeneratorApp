@@ -4,20 +4,25 @@ using WorkoutGeneratorApp.Interfaces;
 namespace WorkoutGeneratorApp.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/workouts")]
     public class WorkoutGeneratorController : ControllerBase
     {
-        private readonly ILogger<WorkoutGeneratorController> _logger;
-        private IWorkoutApp _workoutApp;
+        private readonly IWorkoutApp _workoutApp;
 
-        public WorkoutGeneratorController(IWorkoutApp workoutApp ,ILogger<WorkoutGeneratorController> logger)
+        public WorkoutGeneratorController(IWorkoutApp workoutApp)
         {
             _workoutApp = workoutApp;
-            _logger = logger;
         }
 
-        [HttpGet(Name = "GetWorkout")]
-        public IActionResult Get()
+        [HttpGet("{workoutId}", Name = "GetWorkout")]
+        public IActionResult Get(int workoutId)
+        {
+            var workout = _workoutApp.GetWorkout(workoutId);
+            return Ok(workout);
+        }
+
+        [HttpGet(Name = "GetRandomWorkout")]
+        public IActionResult GetRandomWorkout()
         {
             var workout = _workoutApp.GetRandomWorkout();
             return Ok(workout);
