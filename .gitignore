@@ -5,6 +5,9 @@
 !.vscode/extensions.json
 !.vscode/*.code-snippets
 
+# Visual Studio 2015
+.vs/
+
 # Local History for Visual Studio Code
 .history/
 
