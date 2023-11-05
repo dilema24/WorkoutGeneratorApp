@@ -1,5 +1,5 @@
+using WorkoutGeneratorApp.Data;
 using WorkoutGeneratorApp.Interfaces;
-using WorkoutGeneratorApp.Services;
 
 internal class Program
 {
@@ -10,7 +10,7 @@ internal class Program
         // Add services to the container.
 
         builder.Services.AddControllers();
-        builder.Services.AddSingleton<IWorkoutApp, WorkoutsService>();
+        builder.Services.AddSingleton<IWorkoutDatabase, WorkoutDatabase>();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();

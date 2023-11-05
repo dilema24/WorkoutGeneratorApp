@@ -6,16 +6,16 @@ namespace WorkoutGeneratorApp.Services
 {
     public class WorkoutsService : IWorkoutApp
     {
-        private readonly WorkoutDatabase workoutDatabase;
+        private readonly IWorkoutDatabase _workoutDatabase;
 
-        public WorkoutsService()
+        public WorkoutsService(WorkoutDatabase workoutDatabase)
         {
-            workoutDatabase = new WorkoutDatabase();
+            _workoutDatabase = workoutDatabase;
         }
 
         public string GetRandomWorkout()
         {
-            var workoutList = workoutDatabase.GetWorkouts();
+            var workoutList = _workoutDatabase.GetWorkouts();
 
             Random ran = new();
             var randomInt = ran.Next(workoutList.Count);
@@ -25,7 +25,7 @@ namespace WorkoutGeneratorApp.Services
 
         public IEnumerable<Workout> GetWorkout(int workoutId)
         {
-            var workouts = workoutDatabase.GetWorkouts();
+            var workouts = _workoutDatabase.GetWorkouts();
 
             var workout = workouts.Select(x => x).Where(y => y.Id == workoutId)
                 ?? throw new Exception($"Workout with id {workoutId} was not found");
